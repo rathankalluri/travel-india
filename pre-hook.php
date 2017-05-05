@@ -40,7 +40,7 @@ function processMessage($update) {
 	$result = do_post_request($url, $data);
 	 sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => $update["result"]["parameters"]["msg"],
+            "speech" => $result,
             "displayText" => $result,
             "contextOut" => array()
         ));
