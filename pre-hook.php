@@ -24,10 +24,10 @@ function do_post_request($url, $data, $optional_headers = null)
 
 #Process Data from your webhook.
 function processMessage($update) {
-	$geoLoc = $update["result"]["parameters"]["georaphic-location"];
-	$placeType = $update["result"]["parameters"]["place-type"];
-	$states =  $update["result"]["parameters"]["states"];
-	$weather = $update["result"]["parameters"]["weather"];
+	if(empty($update["result"]["parameters"]["georaphic-location"])){$geoLoc = FALSE;}else{$geoLoc = $update["result"]["parameters"]["georaphic-location"];}
+	if(empty($update["result"]["parameters"]["place-type"])){$placeType = FALSE;}else{$placeType = $update["result"]["parameters"]["place-type"];}
+	if(empty($update["result"]["parameters"]["states"])){$states = FALSE;}else{$states =  $update["result"]["parameters"]["states"];}
+	if(empty($update["result"]["parameters"]["weather"])){$weather = FALSE;}else{$weather = $update["result"]["parameters"]["weather"];}
 	
 	$url = 'http://rathankalluri.com/tr-in/hook.php';
 	$data = array(
