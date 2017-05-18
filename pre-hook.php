@@ -48,7 +48,7 @@ function processPlacesMessage($update) {
 
 function processDetailsMessage($update) {
 	
-	$url = 'http://rathankalluri.com/tr-in/hook.php?getdetails=true';
+	$url = 'http://rathankalluri.com/tr-in/detail-hook.php';
 	$data = array(
 			"detail" => $update["result"]["resolvedQuery"],
 			"source" => $update["result"]["source"]
