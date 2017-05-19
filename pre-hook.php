@@ -21,7 +21,6 @@ function do_post_request($url, $data, $optional_headers = null)
   }
   return $response;
 }
-
 #Process Data from your webhook.
 function processPlacesMessage($update) {
 	if(empty($update["result"]["parameters"]["georaphic-location"])){$geoLoc = FALSE;}else{$geoLoc = $update["result"]["parameters"]["georaphic-location"];}
@@ -36,7 +35,6 @@ function processPlacesMessage($update) {
 			"states" => $states,
 			"weather" => $weather
 	);
-
 	$result = do_post_request($url, $data);
 	 sendMessage(array(
             "source" => $update["result"]["source"],
@@ -45,7 +43,6 @@ function processPlacesMessage($update) {
             "contextOut" => array()
         ));
 }
-
 function processDetailsMessage($update) {
 	
 	$url = 'http://rathankalluri.com/tr-in/detail-hook.php';
@@ -53,7 +50,6 @@ function processDetailsMessage($update) {
 			"detail" => $update["result"]["resolvedQuery"],
 			"source" => $update["result"]["source"]
 	);
-
 	$result = do_post_request($url, $data);
 	 sendMessage(array(
             "source" => $update["result"]["source"],
@@ -61,26 +57,23 @@ function processDetailsMessage($update) {
             "displayText" => $result,
             "contextOut" => array()
         ));
-
 }
-
 #respond back to API.AI
 function sendMessage($parameters) {
 	header('Content-Type: application/json');
     	echo json_encode($parameters);
 }
-
 #Get Data from API.AI
 $update_response = file_get_contents("php://input");
 $update = json_decode($update_response, true);
-
-if ($update["result"]["intentName"] == "Find places") {
+if (isset($update["result"]["action"])){
+if ($update["result"]["metadata"]["intentName"] == "Find places") {
 	processPlacesMessage($update);
 	
 }
-else if ($update["result"]["intentName"] == "details") {
+else if ($update["result"]["metadata"]["intentName"] == "details") {
 	processDetailsMessage($update);
 	
 }
-
+}
 ?>
