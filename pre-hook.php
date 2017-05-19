@@ -40,7 +40,7 @@ function processPlacesMessage($update) {
 	$result = do_post_request($url, $data);
 	 sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Here are the results I found : ".$result,
+            "speech" => "Here are the results I found : ".$result. "  Please say 'Detail PlaceName' to get details of the places just found.",
             "displayText" => $result,
             "contextOut" => array()
         ));
