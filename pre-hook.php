@@ -73,13 +73,14 @@ function sendMessage($parameters) {
 #Get Data from API.AI
 $update_response = file_get_contents("php://input");
 $update = json_decode($update_response, true);
-if (isset($update["result"]["intentName"] == "Find places")) {
+if (isset($update["result"]["action"])) {
+if ($update["result"]["intentName"] == "Find places") {
 	processPlacesMessage($update);
 	
 }
-else if (isset($update["result"]["intentName"] == "details")) {
+else if ($update["result"]["intentName"] == "details") {
 	processDetailsMessage($update);
 	
 }
-
+}
 ?>
