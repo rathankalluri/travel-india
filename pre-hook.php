@@ -33,7 +33,7 @@ function processPlacesMessage($update) {
 			"geo-location" => $geoLoc,
 			"place-type" => $placeType,
 			"states" => $states,
-			"weather" => $weather.
+			"weather" => $weather,
 			"source" => $update["result"]["source"]
 	);
 	$result = do_post_request($url, $data);
