@@ -57,7 +57,8 @@ function processDetailsMessage($update) {
 #respond back to API.AI
 function sendMessage($parameters) {
 	header('Content-Type: application/json');
-    	echo json_encode($parameters);
+    	//echo json_encode($parameters);
+	  echo $parameters;
 }
 #Get Data from API.AI
 $update_response = file_get_contents("php://input");
