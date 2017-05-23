@@ -33,15 +33,11 @@ function processPlacesMessage($update) {
 			"geo-location" => $geoLoc,
 			"place-type" => $placeType,
 			"states" => $states,
-			"weather" => $weather
+			"weather" => $weather.
+			"source" => $update["result"]["source"]
 	);
 	$result = do_post_request($url, $data);
-	 sendMessage(array(
-            "source" => $update["result"]["source"],
-            "speech" => "Here are the results I found : ".$result. "  Please say 'Detail PlaceName' to get details of the places just found.",
-            "displayText" => $result,
-            "contextOut" => array()
-        ));
+	 sendMessage($result);
 }
 function processDetailsMessage($update) {
 	
