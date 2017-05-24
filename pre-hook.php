@@ -34,7 +34,8 @@ function processPlacesMessage($update) {
 			"place-type" => $placeType,
 			"states" => $states,
 			"weather" => $weather,
-			"source" => $update["result"]["source"]
+			"source" => $update["originalRequest"]["source"],
+		        "dataFromSource" => $update["originalRequest"]
 	);
 	$result = do_post_request($url, $data);
 	 sendMessage($result);
@@ -44,7 +45,7 @@ function processDetailsMessage($update) {
 	$url = 'http://rathankalluri.com/tr-in/detail-hook.php';
 	$data = array(
 			"detail" => $update["result"]["resolvedQuery"],
-			"source" => $update["result"]["source"]
+			"source" => $update["originalRequest"]["source"],
 	);
 	$result = do_post_request($url, $data);
 	 sendMessage(array(
