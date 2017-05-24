@@ -48,12 +48,7 @@ function processDetailsMessage($update) {
 			"source" => $update["originalRequest"]["source"],
 	);
 	$result = do_post_request($url, $data);
-	 sendMessage(array(
-            "source" => $update["result"]["source"],
-            "speech" => "Here are the details : ".$result,
-            "displayText" => $result,
-            "contextOut" => array()
-        ));
+	sendMessage($result);
 }
 #respond back to API.AI
 function sendMessage($parameters) {
