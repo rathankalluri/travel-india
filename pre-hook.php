@@ -58,6 +58,7 @@ function sendMessage($parameters) {
 }
 #Get Data from API.AI
 $update_response = file_get_contents("php://input");
+error_log("raw data:".$update_response, 0);
 $update = json_decode($update_response, true);
 if (isset($update["result"]["action"])){
 if ($update["result"]["metadata"]["intentName"] == "Find places") {
