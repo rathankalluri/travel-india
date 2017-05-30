@@ -57,6 +57,7 @@ function sendMessage($parameters) {
 	  echo $parameters;
 }
 #Get Data from API.AI
+if($_POST){
 $update_response = file_get_contents("php://input");
 $update = json_decode($update_response, true);
 if (isset($update["result"]["action"])){
@@ -69,4 +70,5 @@ else if ($update["result"]["metadata"]["intentName"] == "details") {
 	
 }
 }
+}else{echo "Nothing here";}
 ?>
