@@ -55,6 +55,7 @@ function sendMessage($parameters) {
 	header('Content-Type: application/json');
     	//echo json_encode($parameters);
 	  echo $parameters;
+	  error_log($parameters, 0);
 }
 #Get Data from API.AI
 if(file_get_contents("php://input")){
