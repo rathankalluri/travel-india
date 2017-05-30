@@ -57,7 +57,7 @@ function sendMessage($parameters) {
 	  echo $parameters;
 }
 #Get Data from API.AI
-if($_POST){
+if(file_get_contents("php://input")){
 $update_response = file_get_contents("php://input");
 $update = json_decode($update_response, true);
 if (isset($update["result"]["action"])){
