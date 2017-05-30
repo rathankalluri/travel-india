@@ -55,11 +55,11 @@ function sendMessage($parameters) {
 	header('Content-Type: application/json');
     	//echo json_encode($parameters);
 	  echo $parameters;
-	  error_log($parameters, 0);
 }
 #Get Data from API.AI
 if(file_get_contents("php://input")){
 $update_response = file_get_contents("php://input");
+ error_log($update_response, 0);
 $update = json_decode($update_response, true);
 if (isset($update["result"]["action"])){
 if ($update["result"]["metadata"]["intentName"] == "Find places") {
