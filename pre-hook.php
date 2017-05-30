@@ -45,7 +45,7 @@ function processDetailsMessage($update) {
 	$url = 'http://rathankalluri.com/tr-in/detail-hook.php';
 	$data = array(
 			"detail" => $update["result"]["resolvedQuery"],
-			"source" => $update["originalRequest"]["source"],
+			"source" => $update["originalRequest"]["source"]
 	);
 	$result = do_post_request($url, $data);
 	sendMessage($result);
@@ -58,7 +58,6 @@ function sendMessage($parameters) {
 }
 #Get Data from API.AI
 $update_response = file_get_contents("php://input");
-error_log("raw data:".$update_response, 0);
 $update = json_decode($update_response, true);
 if (isset($update["result"]["action"])){
 if ($update["result"]["metadata"]["intentName"] == "Find places") {
